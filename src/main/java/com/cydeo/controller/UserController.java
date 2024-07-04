@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
+
 //if you put @RestController you can return the data to HTTP method
 @RestController // if you put only @Controller you need to return view
 @RequestMapping ("/api/v1/user")  // general endpoints
@@ -27,6 +29,7 @@ public class UserController {
     // in the most of the company for all CRUD operation (get something, create, update, delete something is only work with one base endpoint (in the class level))
     ///api/v1/user this endpint will work for all get, put, post, delete
     @GetMapping
+    @RolesAllowed({"Manager", "Admin"})
     public ResponseEntity<ResponseWrapper> getUsers(){
        // ResponseWrapper responseWrapper = new ResponseWrapper("All users are retrieved", userService.listAllUsers(), HttpStatus.OK);
         ResponseWrapper responseWrapper = ResponseWrapper.builder()
@@ -40,6 +43,7 @@ public class UserController {
 //ResponseEntity. ok -- ok means StatusCode in the Postman Response part
     //Http.StatusCode.ok -- ok means we are gonna see the body  also HTTP status
     @GetMapping("/{username}")
+    @RolesAllowed({"Admin"})
     public ResponseEntity<ResponseWrapper> getUserByUserName(@PathVariable ("username")String userName){
 
         UserDTO foundUserDTO = userService.findByUserName(userName);
@@ -52,7 +56,9 @@ public class UserController {
 
     }
 
+
     @PostMapping()
+    @RolesAllowed({"Admin"})
     public ResponseEntity<ResponseWrapper> createUser(@RequestBody UserDTO userDTO){ // How am I gonna catch this username ? with @PathVariable
         userService.save(userDTO);
     return ResponseEntity.status(HttpStatus.CREATED)
@@ -64,6 +70,7 @@ public class UserController {
     }
 
     @PutMapping("/{userName}") // OZZY  don't put endpoint here.. he use only @RequestBody UserDTO userDTO as a parameter
+    @RolesAllowed({"Admin"})
     public ResponseEntity<ResponseWrapper> updateUser(@RequestBody UserDTO userDTO, @PathVariable("userName") String userName){
 
         //UserDTO findUser = userService.findByUserName(userName);
@@ -77,6 +84,7 @@ public class UserController {
                 .build());
     }
     @DeleteMapping("/{userName}")
+    @RolesAllowed({"Admin"})
     public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("userName") String userName){
 
         userService.delete(userName);
