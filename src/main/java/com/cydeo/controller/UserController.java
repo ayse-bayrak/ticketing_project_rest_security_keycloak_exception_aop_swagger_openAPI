@@ -5,6 +5,8 @@ import com.cydeo.dto.UserDTO;
 import com.cydeo.entity.User;
 import com.cydeo.mapper.MapperUtil;
 import com.cydeo.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import javax.annotation.security.RolesAllowed;
 //if you put @RestController you can return the data to HTTP method
 @RestController // if you put only @Controller you need to return view
 @RequestMapping ("/api/v1/user")  // general endpoints
+@Tag(name="UserController", description = "User API") // this is make up stuff
 public class UserController {
     private final UserService userService; // all the time we are injecting intercae not implementation class
     private final MapperUtil mapperUtil;
@@ -30,6 +33,7 @@ public class UserController {
     ///api/v1/user this endpint will work for all get, put, post, delete
     @GetMapping
     @RolesAllowed({"Manager", "Admin"})
+    @Operation(summary = "Get users")
     public ResponseEntity<ResponseWrapper> getUsers(){
        // ResponseWrapper responseWrapper = new ResponseWrapper("All users are retrieved", userService.listAllUsers(), HttpStatus.OK);
         ResponseWrapper responseWrapper = ResponseWrapper.builder()
@@ -44,6 +48,7 @@ public class UserController {
     //Http.StatusCode.ok -- ok means we are gonna see the body  also HTTP status
     @GetMapping("/{username}")
     @RolesAllowed({"Admin"})
+    @Operation(summary = "Get by userName")
     public ResponseEntity<ResponseWrapper> getUserByUserName(@PathVariable ("username")String userName){
 
         UserDTO foundUserDTO = userService.findByUserName(userName);
@@ -59,6 +64,7 @@ public class UserController {
 
     @PostMapping()
     @RolesAllowed({"Admin"})
+    @Operation(summary = "Create user")
     public ResponseEntity<ResponseWrapper> createUser(@RequestBody UserDTO userDTO){ // How am I gonna catch this username ? with @PathVariable
         userService.save(userDTO);
     return ResponseEntity.status(HttpStatus.CREATED)
@@ -71,6 +77,7 @@ public class UserController {
 
     @PutMapping("/{userName}") // OZZY  don't put endpoint here.. he use only @RequestBody UserDTO userDTO as a parameter
     @RolesAllowed({"Admin"})
+    @Operation(summary = "Update user")
     public ResponseEntity<ResponseWrapper> updateUser(@RequestBody UserDTO userDTO, @PathVariable("userName") String userName){
 
         //UserDTO findUser = userService.findByUserName(userName);
@@ -85,6 +92,7 @@ public class UserController {
     }
     @DeleteMapping("/{userName}")
     @RolesAllowed({"Admin"})
+    @Operation(summary = "Delete user")
     public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("userName") String userName){
 
         userService.delete(userName);
