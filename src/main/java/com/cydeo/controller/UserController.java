@@ -3,6 +3,7 @@ package com.cydeo.controller;
 import com.cydeo.dto.ResponseWrapper;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.entity.User;
+import com.cydeo.exception.TicketingProjectException;
 import com.cydeo.mapper.MapperUtil;
 import com.cydeo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +17,7 @@ import javax.annotation.security.RolesAllowed;
 //if you put @RestController you can return the data to HTTP method
 @RestController // if you put only @Controller you need to return view
 @RequestMapping ("/api/v1/user")  // general endpoints
-@Tag(name="UserController", description = "User API") // this is make up stuff
+ // this is make up stuff
 public class UserController {
     private final UserService userService; // all the time we are injecting intercae not implementation class
     private final MapperUtil mapperUtil;
@@ -93,9 +94,10 @@ public class UserController {
     @DeleteMapping("/{userName}")
     @RolesAllowed({"Admin"})
     @Operation(summary = "Delete user")
-    public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("userName") String userName){
+    public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("userName") String userName) throws TicketingProjectException {
 
         userService.delete(userName);
+
         return ResponseEntity.ok(ResponseWrapper.builder()
                 .success(true)
                 .code(HttpStatus.OK.value())
