@@ -29,7 +29,7 @@ public class LoggingAspect {
     // got username from kycloak
     }
 
-    @Pointcut("execution(* com.cydeo.controller.ProjectController.*(..)) || execution(* com.cydeo.controller.TaskController.*(..))")
+    @Pointcut("execution(* com.cydeo.controller.ProjectController.*(..)) || execution(* com.cydeo.controller.TaskController.*(..)) ")
 public void anyProjectAndTaskControllerPC() {}
 
     @Before("anyProjectAndTaskControllerPC()")
