@@ -1,5 +1,6 @@
 package com.cydeo.controller;
 
+import com.cydeo.annotation.ExecutionTime;
 import com.cydeo.dto.ResponseWrapper;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.entity.User;
@@ -32,6 +33,7 @@ public class UserController {
 
     // in the most of the company for all CRUD operation (get something, create, update, delete something is only work with one base endpoint (in the class level))
     ///api/v1/user this endpint will work for all get, put, post, delete
+    @ExecutionTime
     @GetMapping
     @RolesAllowed({"Manager", "Admin"})
     @Operation(summary = "Get users")
@@ -47,6 +49,7 @@ public class UserController {
     }
 //ResponseEntity. ok -- ok means StatusCode in the Postman Response part
     //Http.StatusCode.ok -- ok means we are gonna see the body  also HTTP status
+    @ExecutionTime
     @GetMapping("/{username}")
     @RolesAllowed({"Admin"})
     @Operation(summary = "Get by userName")
