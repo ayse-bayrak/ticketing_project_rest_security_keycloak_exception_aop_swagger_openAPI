@@ -13,5 +13,5 @@ public @interface DefaultExceptionMessage {
 
 }
 //i am trying to create on annotation i can put top of the message
-// if there is an certain exception in the method, I am gonna put this annotation top of the model,
+//if there is an certain exception in the method, I am gonna put this annotation top of the model,
 //this method is gonna throw that exception.
