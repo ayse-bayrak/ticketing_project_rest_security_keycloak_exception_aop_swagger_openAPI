@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
         //whenever we create any user in tha database,
         // this user information is saving our authorization service
         // only thing keycloak is holding the information about authorization stuff which is username password nothing else
-        // so all the othre information if you need it, you need to graph from your database
+        // so all the other information if you need it, you need to graph from your database
 
 
     }
