@@ -18,7 +18,7 @@ import javax.annotation.security.RolesAllowed;
 //if you put @RestController you can return the data to HTTP method
 @RestController // if you put only @Controller you need to return view
 @RequestMapping ("/api/v1/user")  // general endpoints
- // this is make up stuff
+@Tag(name="UserController", description = "User API")// for swagger topic // this is make up stuff
 public class UserController {
     private final UserService userService; // all the time we are injecting intercae not implementation class
     private final MapperUtil mapperUtil;
@@ -36,7 +36,7 @@ public class UserController {
     @ExecutionTime
     @GetMapping
     @RolesAllowed({"Manager", "Admin"})
-    @Operation(summary = "Get users")
+    @Operation(summary = "Get users") // for swagger topic
     public ResponseEntity<ResponseWrapper> getUsers(){
        // ResponseWrapper responseWrapper = new ResponseWrapper("All users are retrieved", userService.listAllUsers(), HttpStatus.OK);
         ResponseWrapper responseWrapper = ResponseWrapper.builder()
@@ -49,10 +49,10 @@ public class UserController {
     }
 //ResponseEntity. ok -- ok means StatusCode in the Postman Response part
     //Http.StatusCode.ok -- ok means we are gonna see the body  also HTTP status
-    @ExecutionTime
+    @ExecutionTime // for AOP logging topic
     @GetMapping("/{username}")
-    @RolesAllowed({"Admin"})
-    @Operation(summary = "Get by userName")
+    @RolesAllowed({"Admin"}) // for keycloak topic
+    @Operation(summary = "Get by userName") // for swagger topic
     public ResponseEntity<ResponseWrapper> getUserByUserName(@PathVariable ("username")String userName){
 
         UserDTO foundUserDTO = userService.findByUserName(userName);
@@ -64,7 +64,6 @@ public class UserController {
                 .data(foundUserDTO).build());
 
     }
-
 
     @PostMapping()
     @RolesAllowed({"Admin"})
