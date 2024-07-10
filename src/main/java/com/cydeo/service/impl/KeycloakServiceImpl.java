@@ -22,7 +22,8 @@ import static org.keycloak.admin.client.CreatedResponseUtil.getCreatedId;
 public class KeycloakServiceImpl implements KeycloakService {
 
 
-    private final KeycloakProperties keycloakProperties; // we did this class KeycloakProperties and put inside @Value variable
+    private final KeycloakProperties keycloakProperties;
+    // we did this class KeycloakProperties and put inside @Value variable
     //wherever class I needed I can inject it and I can use all these variable
 
     public KeycloakServiceImpl(KeycloakProperties keycloakProperties) {
