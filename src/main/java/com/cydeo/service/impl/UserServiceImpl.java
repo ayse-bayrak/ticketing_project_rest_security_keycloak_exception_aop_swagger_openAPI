@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
             throw new TicketingProjectException("User can noy be deleted");
             //my custom exception
         }
-
+        keycloakService.delete(username);
     }
 
     @Override
@@ -121,7 +121,6 @@ public class UserServiceImpl implements UserService {
             default:
                 return true;
         }
-
     }
 
 }

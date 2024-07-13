@@ -20,7 +20,7 @@ import javax.annotation.security.RolesAllowed;
 @RequestMapping ("/api/v1/user")  // general endpoints
 @Tag(name="UserController", description = "User API")// for swagger topic // this is make up stuff
 public class UserController {
-    private final UserService userService; // all the time we are injecting intercae not implementation class
+    private final UserService userService; // all the time we are injecting interface not implementation class
     private final MapperUtil mapperUtil;
 
     public UserController(UserService userService, MapperUtil mapperUtil) {
@@ -62,20 +62,21 @@ public class UserController {
                 .message("User is retrieved")
                 .code(HttpStatus.OK.value())
                 .data(foundUserDTO).build());
-
     }
 
     @PostMapping()
     @RolesAllowed({"Admin"})
     @Operation(summary = "Create user")
     public ResponseEntity<ResponseWrapper> createUser(@RequestBody UserDTO userDTO){ // How am I gonna catch this username ? with @PathVariable
-        userService.save(userDTO);
+            userService.save(userDTO);
     return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(ResponseWrapper.builder()
+                          .body(
+                             ResponseWrapper.builder()
                             .success(true)
                             .code(HttpStatus.CREATED.value())
                             .message("one user is created")
-                            .build());
+                            .build()
+                          );
     }
 
     @PutMapping("/{userName}") // OZZY  don't put endpoint here.. he use only @RequestBody UserDTO userDTO as a parameter

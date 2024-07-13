@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cydeo</groupId>
-    <artifactId>ticketing_project_rest</artifactId>
+    <artifactId>ticketing_project_rest_security</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ticketing-project-rest</name>
     <description>ticketing-project-rest</description>
@@ -74,6 +74,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

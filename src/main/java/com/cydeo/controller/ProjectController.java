@@ -59,7 +59,6 @@ public class ProjectController {
                 .code(HttpStatus.CREATED.value())
                 .success(true)
                 .data(projectDTO).build());
-
     }
 
     @PutMapping
@@ -84,7 +83,6 @@ public class ProjectController {
                 .code(HttpStatus.OK.value())
                 .success(true)
                 .build());
-
     }
 
     @GetMapping("/manager/project-status")
