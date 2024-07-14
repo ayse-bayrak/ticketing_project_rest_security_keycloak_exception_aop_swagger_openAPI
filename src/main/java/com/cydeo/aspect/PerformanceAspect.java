@@ -17,6 +17,14 @@ public class PerformanceAspect {
     @Pointcut("@annotation(com.cydeo.annotation.ExecutionTime)")
     public void executionTimePC() {}
 
+    /*
+    we add in UserController class
+    @ExecutionTime
+    @GetMapping("/{username}")
+     */
+
+
+
     @Around("executionTimePC()")
     public Object aroundAnyExecutionTimeAdvice (ProceedingJoinPoint proceedingJoinPoint) {
 
