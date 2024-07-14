@@ -39,6 +39,9 @@ public void anyProjectAndTaskControllerPC() {}
             ,getUserName());
     }
 
+    //on console:
+    // Before -> Method: ProjectController.getProjects(), User: ozzy
+
     @AfterReturning(pointcut = "anyProjectAndTaskControllerPC()", returning = "results")
     public void afterAnyProjectAndTaskControllerAdvice(JoinPoint joinPoint, Object results) {
         log.info("After Returning -> Method: {}, User: {}, Results :{}"
@@ -46,6 +49,8 @@ public void anyProjectAndTaskControllerPC() {}
                 ,getUserName()
                 , results.toString());
     }
+    // on console:
+    //After Returning -> Method: ProjectController.getProjects(), User: ozzy, Results :<200 OK OK,com.cydeo.dto.ResponseWrapper@15a1b9e3,[]>
 
     @AfterThrowing(pointcut = "anyProjectAndTaskControllerPC()", throwing = "exception")
     public void afterReturningAnyProjectAndTaskControllerAdvice(JoinPoint joinPoint, Exception exception) {
