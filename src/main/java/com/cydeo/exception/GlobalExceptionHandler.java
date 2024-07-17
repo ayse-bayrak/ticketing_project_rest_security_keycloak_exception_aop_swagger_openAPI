@@ -15,6 +15,7 @@ import org.springframework.web.method.HandlerMethod;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
+// THis is class which is used all  @ExceptionHandler
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
