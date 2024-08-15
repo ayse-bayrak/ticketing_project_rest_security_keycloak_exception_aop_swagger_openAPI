@@ -3,7 +3,7 @@ package com.cydeo.service;
 import com.cydeo.dto.UserDTO;
 
 import javax.ws.rs.core.Response; // comes dependency -javax
-//we create this interface to create a user an d delete a user in the keycloak
+//we create this interface to create a user/delete a user in the keycloak
 
 
 public interface KeycloakService {
