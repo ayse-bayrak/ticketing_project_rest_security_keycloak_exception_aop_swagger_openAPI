@@ -8,8 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-
-// in the interview when she display the this class interviewer  really impressed so popular topic
+// this class really impressed so popular topic
 @Aspect
 @Component
 @Slf4j
@@ -18,12 +17,10 @@ public class PerformanceAspect {
     public void executionTimePC() {}
 
     /*
-    we add in UserController class
+    we added this to UserController class
     @ExecutionTime
     @GetMapping("/{username}")
      */
-
-
 
     @Around("executionTimePC()")
     public Object aroundAnyExecutionTimeAdvice (ProceedingJoinPoint proceedingJoinPoint) {
@@ -45,4 +42,11 @@ public class PerformanceAspect {
         return result;
 
     }
+    /*
+    Logs on console about @Around
+    PerformanceAspect - Execution starts:
+    --
+    --
+    PerformanceAspect - Time taken to execute: 4 ms - Method : UserController.getUsers()
+     */
 }
