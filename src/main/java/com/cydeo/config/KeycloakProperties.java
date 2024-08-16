@@ -5,11 +5,10 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-//when you go to market and when you look the Keycloak Properties class? what dou you think?
-//what is the purpose to create separate class
-//Because in my application in different places in my application we can use this field without
+//what is the purpose to create separate class (Keycloak Properties)
+//Because in different places in my application we can use this field without
 //redeclared this field, by using this class I can use this fields anywhere, that is the whole purpose
-//we gonna use this structure in the microservice also
+//we are going to use this structure in the microservice also
 
 @Component
 @Getter

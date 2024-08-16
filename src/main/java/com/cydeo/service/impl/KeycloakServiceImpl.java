@@ -31,7 +31,7 @@ public class KeycloakServiceImpl implements KeycloakService {
         this.keycloakProperties = keycloakProperties;
     }
 
-    //Response class is comin with dependency javax.ws.rs.core something like
+    //Response class is coming with dependency javax.ws.rs.core something like
     //this is the service which is going to create the user in the keycloak
     @Override
     public Response userCreate(UserDTO userDTO) {
