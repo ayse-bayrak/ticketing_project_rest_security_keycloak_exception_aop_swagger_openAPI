@@ -32,7 +32,7 @@ public class UserController {
     // I want to see that custom output as a Json
 
     // in the most of the company for all CRUD operation (get something, create, update, delete something is only work with one base endpoint (in the class level))
-    ///api/v1/user this endpint will work for all get, put, post, delete
+    ///api/v1/user this endpoint will work for all get, put, post, delete
     @ExecutionTime
     @GetMapping
     @RolesAllowed({"Manager", "Admin"})
@@ -116,7 +116,8 @@ public class UserController {
 /*
 IQ : you have a one interface but you might have a bunch of implementation classes
 How you specify which one?
--we can do this one different way,
--we can create bunch of classes and obly we can @Service the one class without defining the @component the other classes
--if we put @component to all classes , we can specify one of them the @Qualifier or @Primary
+-we can do this one different way,(3 way)
+-we can create bunch of classes and only we can @Service the one class without defining the @component the other classes
+-if we put @component to all classes , we can specify one of them the @Qualifier
+-or we can use @Primary
  */

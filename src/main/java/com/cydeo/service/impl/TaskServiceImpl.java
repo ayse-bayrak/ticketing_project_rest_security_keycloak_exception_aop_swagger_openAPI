@@ -121,10 +121,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
 
+        // UserDTO currentUserDTO = userService.findByUserName("harold@manager.com"); // we change this hardcoded portion with keycloak authentication
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();
         String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();
-        // UserDTO currentUserDTO = userService.findByUserName("harold@manager.com"); // we change this hardcoded portion with keycloak authentication
+          /*
+        whenever in the API we have the endpoint (show me all the projects) but which projects, my projects, my projects as a manager who are you as a manager,
+        this who am I, get my information from the token because  I login right now in authorization server.
+         */
+
         UserDTO loggedInUser = userService.findByUserName(username);
 
         //UserDTO loggedInUser = userService.findByUserName("john@employee.com");

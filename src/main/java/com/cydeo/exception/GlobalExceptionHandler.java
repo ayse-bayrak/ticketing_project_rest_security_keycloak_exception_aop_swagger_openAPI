@@ -15,11 +15,11 @@ import org.springframework.web.method.HandlerMethod;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
-// THis is class which is used all  @ExceptionHandler
+// This is class which is used all  @ExceptionHandler
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(TicketingProjectException.class)// whenever exception haappens belongs to ticketing project exception (we created, custom class) execute this code
+    @ExceptionHandler(TicketingProjectException.class)// whenever exception happens belongs to ticketing project exception (we created, custom class) execute this code
     public ResponseEntity<ResponseWrapper> serviceException(TicketingProjectException se){
         String message = se.getMessage();
         return new ResponseEntity<>(ResponseWrapper.builder().success(false).code(HttpStatus.CONFLICT.value()).message(message).build(),HttpStatus.CONFLICT);

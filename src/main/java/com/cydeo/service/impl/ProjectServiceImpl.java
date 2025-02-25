@@ -100,10 +100,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<ProjectDTO> listAllProjectDetails() {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails();
-        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();
        // UserDTO currentUserDTO = userService.findByUserName("harold@manager.com"); // we change this hardcoded portion with keycloak authentication
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); // is getting the information from the Sprıng boot, basically who is logging in this place
+        SimpleKeycloakAccount details = (SimpleKeycloakAccount) authentication.getDetails(); //this keycloak connection, it is going to token and gets that username.
+        String username = details.getKeycloakSecurityContext().getToken().getPreferredUsername();
+        /*
+        whenever in the API we have the endpoint (show me all the projects) but which projects, my projects, my projects as a manager who are you as a manager,
+        this who am I, get my information from the token because  I login right now in authorization server.
+         */
+
         UserDTO currentUserDTO = userService.findByUserName(username);
 
         User user = userMapper.convertToEntity(currentUserDTO);

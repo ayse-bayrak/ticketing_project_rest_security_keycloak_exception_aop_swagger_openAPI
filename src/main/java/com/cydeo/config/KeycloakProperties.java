@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 //what is the purpose to create separate class (Keycloak Properties)
 //Because in different places in my application we can use this field without
 //redeclared this field, by using this class I can use this fields anywhere, that is the whole purpose
-//we are going to use this structure in the microservice also
+//we are going to use a lot this structure in the microservice also
+// why we use @Value
 
 @Component
 @Getter

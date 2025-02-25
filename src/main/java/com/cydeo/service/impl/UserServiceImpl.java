@@ -57,9 +57,9 @@ public class UserServiceImpl implements UserService {
         userRepository.save(obj);
         keycloakService.userCreate(user);
         //whenever we create any user in tha database,
-        // this user information is saving our authorization service
+        // this user information is saving our authorization service database
         // only thing keycloak is holding the information about authorization stuff which is username password nothing else
-        // so all the other information if you need it, you need to graph from your database
+        // so all the other information if you need it, we need to graph from our database
 
 
     }
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
             user.setUserName(user.getUserName() + "-" + user.getId());  // harold@manager.com-2
             userRepository.save(user);
         }else{
-            throw new TicketingProjectException("User can noy be deleted");
+            throw new TicketingProjectException("User can not be deleted");
             //my custom exception
         }
         keycloakService.delete(username);
